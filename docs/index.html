@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Talita Santos | Portfolio</title>
+  <link rel="stylesheet" href="../styles/style.css" />
+</head>
+<body>
+  <main class="page">
+    <section class="layout">
+      <div class="window">
+        <!-- Barra superior com título e seletor de idioma -->
+      <div class="window-bar">
+          <div class="bar-title">PORTFOLIO</div>
+          <div class="language-toggle" aria-label="Language switcher">
+            <button class="active" id="btn-en" onclick="setLanguage('en')">EN</button>
+            <button id="btn-pt" onclick="setLanguage('pt')">PT</button>
+          </div>
+        </div>
+
+        <!-- Informações principais do portfólio -->
+        <div class="window-content">
+          <h1>LUCIANA GALDINO</h1>
+          <p class="role" data-i18n="role">BACK-END DEVELOPER</p>
+
+          <div class="divider"></div>
+
+          <p class="intro" data-i18n="intro">
+            Future <span class="highlight">developer</span> loading...
+          </p>
+
+          <!-- Contador regressivo para a conclusão da graduação -->
+          <div class="countdown-card">
+            <div class="count-middle">
+              <p class="count-title" data-i18n="countTitle">TIME LEFT TO GRADUATE</p>
+              <div class="timer">
+                <div class="time-box">
+                  <strong id="months">00</strong>
+                  <span data-i18n="months">MONTHS</span>
+                </div>
+                <div class="time-box">
+                  <strong id="days">00</strong>
+                  <span data-i18n="days">DAYS</span>
+                </div>
+                <div class="time-box">
+                  <strong id="hours">00</strong>
+                  <span data-i18n="hours">HOURS</span>
+                </div>
+                <div class="time-box">
+                  <strong id="minutes">00</strong>
+                  <span data-i18n="minutes">MINUTES</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Menu de navegação principal -->
+          <nav class="nav-cards" aria-label="Portfolio navigation">
+            <button type="button" class="nav-card" onclick="openAbout()">
+              <span data-i18n="about">ABOUT ME</span>
+            </button>
+            <button type="button" class="nav-card" onclick="openProjects()">
+              <span data-i18n="projects">PROJECTS</span>
+            </button>
+            <button type="button" class="nav-card" onclick="openSkills()">
+              <span data-i18n="skills">SKILLS</span>
+            </button>
+            <button type="button" class="nav-card" id="contactNav" onclick="openContact()">
+              <span data-i18n="contact">CONTACT</span>
+            </button>
+          </nav>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal com informações pessoais -->
+  <div class="about-modal hidden" id="aboutModal" aria-hidden="true">
+    <div class="about-modal-content">
+      <button type="button" class="modal-close" aria-label="Close about section" onclick="closeAbout()">×</button>
+      <div class="about-modal-body">
+        <h2 data-i18n="about">ABOUT ME</h2>
+        <p class="about-text" data-i18n="aboutText">
+          Back-end developer focused on creating solutions that combine logic, creativity, and innovation. I have a strong interest in databases and SQL, enjoying the process of building organized, functional, and well-structured applications. I’m also always willing to learn new technologies, explore different possibilities, and continuously grow as a developer while creating projects with personality and originality.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal responsável pela exibição dos projetos -->
+  <div class="projects-modal hidden" id="projectsModal" aria-hidden="true">
+    <div class="projects-modal-content">
+      <button type="button" class="modal-close" aria-label="Close projects section" onclick="closeProjects()">×</button>
+      <div class="projects-modal-body">
+        <h2 data-i18n="projects">PROJECTS</h2>
+        <div class="project-slider">
+          <button type="button" class="project-nav prev" onclick="prevProject()">‹</button>
+          <div class="project-card">
+            <div class="project-image" id="projectImage"></div>
+            <div class="project-details">
+              <h3 id="projectTitle">ADMINISTRATIVE SYSTEM</h3>
+              <p class="project-description"></p>
+              <div class="project-footer">
+                <span id="projectCounter">1 / 4</span>
+              </div>
+            </div>
+          </div>
+          <button type="button" class="project-nav next" onclick="nextProject()">›</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal contendo as habilidades e tecnologias -->
+  <div class="skills-modal hidden" id="skillsModal" aria-hidden="true">
+    <div class="skills-modal-content">
+      <button type="button" class="modal-close" aria-label="Close skills section" onclick="closeSkills()">×</button>
+      <div class="skills-modal-body">
+        <h2 id="skillsTitle" data-i18n="skills">SKILLS</h2>
+        <div class="skills-slider">
+          <button type="button" class="skills-nav prev" onclick="prevSkills()">‹</button>
+          <div class="skills-list-container">
+            <ul class="skills-list" id="skillsList"></ul>
+          </div>
+          <button type="button" class="skills-nav next" onclick="nextSkills()">›</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal com formas de contato e redes profissionais -->
+  <div class="contact-modal hidden" id="contactModal" aria-hidden="true">
+    <div class="contact-modal-content">
+      <button type="button" id="closeContactBtn" class="modal-close" aria-label="Close contact section" onclick="document.getElementById('contactModal').classList.add('hidden'); document.getElementById('contactModal').setAttribute('aria-hidden', 'true');">×</button>
+      <div class="contact-modal-body">
+        <h2 data-i18n="contact">CONTACT</h2>
+        <p><strong>Phone:</strong> <a href="tel:+5537991092231">(37) 99109-2231</a></p>
+        <p><strong>E-mail:</strong> <a href="mailto:galdinol558@gmail.com">galdinol558@gmail.com</a></p>
+        <p><strong>GitHub:</strong> <a href="https://github.com/LucianaGaldino" target="_blank" rel="noopener noreferrer">LucianaGaldino</a></p>
+        <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/lucianagaldino-" target="_blank" rel="noopener noreferrer">Luciana Galdino</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Painel lateral com quiz para descobrir afinidade entre Front-end e Back-end -->
+  <aside class="quiz-panel" id="quizPanel" aria-hidden="true">
+    <div class="quiz-header">
+      <h2 data-i18n="quizTitle">Quiz: Front-end or Back-end?</h2>
+      <button id="closeQuiz" class="close" aria-label="Close quiz">×</button>
+    </div>
+
+    <form id="quizForm" class="quiz-form">
+      <!-- Área onde as perguntas do quiz serão inseridas dinamicamente -->
+      <div class="questions">
+      </div>
+
+      <div class="quiz-actions">
+        <button type="button" id="resultBtn" class="btn result" data-i18n="quizResultBtn">Ver Resultado</button>
+        <button type="button" id="resetBtn" class="btn ghost" data-i18n="quizResetBtn">Reiniciar</button>
+      </div>
+    </form>
+
+    <div id="resultCard" class="result-card" aria-hidden="true">
+      <h3 id="resultTitle"></h3>
+      <p id="resultDesc"></p>
+      <button id="closeResult" class="btn" data-i18n="quizCloseBtn">Fechar</button>
+    </div>
+  </aside>
+
+  <!-- Modal de frases motivacionais obtidas através da API -->
+  <div class="quote-modal hidden" id="quoteModal" aria-hidden="true">
+    <div class="quote-modal-content">
+      <button type="button" class="modal-close" aria-label="Close quote section" onclick="closeQuote()">×</button>
+      <div class="quote-modal-body">
+        <h2 data-i18n="quoteTitle">DAILY QUOTE</h2>
+        
+        <div class="quote-container">
+          <!-- Exibição da frase e do autor retornados pela API -->
+          <p class="quote-text" id="quoteText">Click the button to get inspired...</p>
+          <p class="quote-author" id="quoteAuthor">— ZenQuotes</p>
+        </div>
+
+        <!-- Botão para solicitar uma nova frase motivacional -->
+        <button type="button" class="quote-btn" aria-label="Get a new quote">
+          <span data-i18n="getQuote">GET QUOTE</span>
+        </button>
+
+        <div class="quote-status" id="quoteStatus"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botão flutuante para abrir o quiz -->
+  <button id="gameBtn" class="game-btn" aria-label="Open quiz">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M6 12h.01M10 12h.01M14 12h.01M18 12h.01M4 7a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H6a2 2 0 01-2-2V7z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <!-- Botão flutuante para acessar a área de frases motivacionais -->
+  <button id="quoteBtn" class="quote-float-btn" aria-label="Open daily quote">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M3 21c3 0 7-1 7-8V5c0-1.25-4.25-2-7-2s-7 .75-7 2v10c0 1 0 4 3 4s4 2 4 4-3 4-7 4z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M15 21c3 0 7-1 7-8V5c0-1.25-4.25-2-7-2s-7 .75-7 2v10c0 1 0 4 3 4s4 2 4 4-3 4-7 4z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <!-- Arquivo JavaScript responsável pelas funcionalidades da página -->
+  <script src="../script/script.js"></script>
+</body>
+</html>
